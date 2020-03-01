@@ -42,6 +42,81 @@ As aplicações foram conteinerizadas através do Docker.
 1 - Executar um git clone no repositório
 
 > git clone https://github.com/EzequiasEvangelista/case_itau.git
+
+2 - Em seguida entre no diretório case_itau 
+
+> cd case_itau
+
+Criei uma imagem Docker para o banco de dados e esta imagem tem um script de Schema do Banco onde esse schema cria o banco de dados twitter e a tabela posts e as colunas ID, usuario, seguidores e mensagem.
+
+3 - Em seguida é necessário subir o serviço de banco de dados conforme os passos abaixo :
+
+Acessar diretório 
+> cd banco/my-mysql
+
+Buildar a imagem
+> docker build -t mysql .
+
+Inicializar o container 
+> docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mudar123 mysql
+
+Verificar se o container subiu
+> docker ps
+
+Exemplo:
+
+docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+6f84421b80e6        mysql               "docker-entrypoint.s…"   25 hours ago        Up 25 hours         0.0.0.0:3306->3306/tcp   charming_nash
+
+
+Acessar o container
+> docker exec -it [CONTAINER ID] bash
+
+Acessar o banco de dados
+> mysql -u root -p [senha do banco de dados]
+
+Exibir o banco twitter que foi criado
+
+> mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| company            |
+| mysql              |
+| performance_schema |
+| twitter            |
++--------------------+
+5 rows in set (0.23 sec)
+
+Entrar no banco twitter:
+
+> mysql> use twitter;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+A tabela posts foi criada com os seguintes campos : 
+
+mysql> describe posts;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | mediumint(9) | NO   | PRI | NULL    | auto_increment |
+| usuario    | varchar(25)  | YES  |     | NULL    |                |
+| seguidores | int(25)      | YES  |     | NULL    |                |
+| mensagem   | varchar(200) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+
+Para verificar os registros pode ser executado um select com o seguinte formato :
+
+> select * from posts; 
+
+
+
+
     
     
     

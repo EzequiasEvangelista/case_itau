@@ -80,7 +80,7 @@ Exibir o banco twitter que foi criado
 
 > mysql> show databases;
 
-
+![show-database](https://user-images.githubusercontent.com/14968618/75635003-6cdead00-5bf1-11ea-9c9c-0edfabb10f4f.png)
 
 Entrar no banco twitter:
 

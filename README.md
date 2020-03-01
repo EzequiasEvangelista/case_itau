@@ -79,15 +79,7 @@ Acessar o banco de dados
 Exibir o banco twitter que foi criado
 
 > mysql> show databases;
->+--------------------+
->| Database           |
->+--------------------+
->| information_schema |
->| company            |
->| mysql              |
->| performance_schema |
->| twitter            |
->+--------------------+
+
 
 
 Entrar no banco twitter:

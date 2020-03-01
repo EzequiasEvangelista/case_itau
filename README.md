@@ -85,6 +85,7 @@ Exibir o banco twitter que foi criado
 Entrar no banco twitter:
 
 > mysql> use twitter;
+
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
@@ -92,15 +93,11 @@ Database changed
 
 A tabela posts foi criada com os seguintes campos : 
 
-mysql> describe posts;
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| id         | mediumint(9) | NO   | PRI | NULL    | auto_increment |
-| usuario    | varchar(25)  | YES  |     | NULL    |                |
-| seguidores | int(25)      | YES  |     | NULL    |                |
-| mensagem   | varchar(200) | YES  |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
+> describe posts;
+
+![describe](https://user-images.githubusercontent.com/14968618/75635091-158d0c80-5bf2-11ea-91db-cd37034a69f3.png)
+
+
 
 Para verificar os registros pode ser executado um select com o seguinte formato :
 

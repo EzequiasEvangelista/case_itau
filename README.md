@@ -31,4 +31,18 @@
     IV. Demais itens que você julgar relevante (Framework ou técnicas de teste, metodologias, padrões, etc.) 
     V. Publique em seu perfil do http://hub.docker.com as imagens finais
     • Cite no relatório: O seu perfil dockerHub e a(s) URL(s) onde se encontram as imagens geradas
+    
+    ## Possível solução
+    
+    Para realizar a busca das hashtags utilizei node.js com a biblioteca twitter. Através dessa biblioteca também realizei o acesso na API para se conectar|autenticar no Twitter e consumir a API. Para o banco de dados, foi utilizado o MySQL na versão 5.6 para gravar estes dados coletados do Twitter. Para recuperar estes dados com base no numero de seguidores e de forma decrescente também foi utilizado o node.js com a biblioteca express. 
+As aplicações foram conteinerizadas através do Docker. 
+
+# Como executar :
+
+1 - Executar um git clone no repositório
+
+> git clone https://github.com/EzequiasEvangelista/case_itau.git
+    
+    
+    
 

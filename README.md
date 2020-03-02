@@ -39,6 +39,10 @@ As aplicações foram conteinerizadas através do Docker.
 
 # Como executar :
 
+Pré-requisitos : Utilizar o Docker e S.O Linux. Caso não for executar os testes com o usuário root, rodar o seguinte comando :
+
+> sudo usermod -aG docker your-user
+
 1 - Executar um git clone no repositório
 
 > git clone https://github.com/EzequiasEvangelista/case_itau.git
@@ -54,11 +58,16 @@ Criei uma imagem Docker para o banco de dados e esta imagem tem um script de Sch
 Acessar diretório 
 > cd banco/my-mysql
 
+Preparar ambiente de rede para estabelecer conexão entre os containers 
+
+> docker network create --driver=bridge --subnet=192.168.0.0/24 --gateway=192.168.0.1 mynet
+
+
 Buildar a imagem
 > docker build -t mysql .
 
 Inicializar o container 
-> docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mudar123 mysql
+> docker run --ip=192.168.0.10 --net=mynet -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mudar123 -e MYSQL_ROOT_HOST=%mysql
 
 Verificar se o container subiu
 > docker ps
@@ -104,6 +113,8 @@ Para verificar os registros pode ser executado um select com o seguinte formato 
 > select * from posts; 
 
 
+
+# Configurações do container que faz a busca dos tweets e a gravação no banco de dados
 
 
     

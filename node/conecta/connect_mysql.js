@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "172.17.0.2",
+  host: "192.168.0.10",
   user: "root",
   password: "mudar123",
   database: "twitter"
@@ -21,7 +21,7 @@ con.connect(function (err) {
     access_token_secret: 'b5QFL13xiuWEcxTFI6lTlsmv6jawDpCs5IJOlelMfqGuP'
   });
 
-  client.get('search/tweets', { q: '#docker #devops' }, function (error, tweets, response) {
+  client.get('search/tweets', { q: '#docker #devops #cloud #aws' }, function (error, tweets, response) {
     tweets.statuses.forEach(function (tweet) {
 
       resultado = [];

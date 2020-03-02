@@ -114,7 +114,30 @@ Para verificar os registros pode ser executado um select com o seguinte formato 
 
 
 
-# Configurações do container que faz a busca dos tweets e a gravação no banco de dados
+## Configurações do container que faz a conexão e inserção dos tweets no banco de dados
+
+Acessar o diretório cd /node/conecta
+Buildar a imagem do container com o comando :
+
+> docker build -t api-insere .
+
+Executar o container com o comando: 
+
+> docker run --ip=192.168.0.9 --net=mynet -p 8888:8888 api-insere
+
+## Configuração do container que faz a busca e ordenação dos tweets no banco de dados 
+
+Acessar o diretório cd /node/busca
+
+Buildar a imagem do container com o comando :
+
+> docker build -t busca .
+
+Executar o container com o comando:
+
+> docker run --ip=192.168.0.8 --net=mynet -p 8080:8080 busca
+
+Realizar o acesso via browser no endereço http://192.168.0.8:8080 e visualizar o conteúdo extraído do banco. 
 
 
     

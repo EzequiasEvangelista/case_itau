@@ -21,7 +21,7 @@ con.connect(function (err) {
     access_token_secret: 'b5QFL13xiuWEcxTFI6lTlsmv6jawDpCs5IJOlelMfqGuP'
   });
 
-  client.get('search/tweets', { q: '#docker #devops' }, function (error, tweets, response) {
+  client.get('search/tweets', { q: '#docker #devops #cloud #aws' }, function (error, tweets, response) {
     tweets.statuses.forEach(function (tweet) {
 
       resultado = [];

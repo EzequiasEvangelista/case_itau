@@ -39,6 +39,10 @@ As aplicações foram conteinerizadas através do Docker.
 
 # Como executar :
 
+Pré-requisitos : Utilizar o Docker e S.O Linux. Caso não for executar os testes com o usuário root, rodar o seguinte comando :
+
+> sudo usermod -aG docker your-user
+
 1 - Executar um git clone no repositório
 
 > git clone https://github.com/EzequiasEvangelista/case_itau.git
@@ -54,11 +58,16 @@ Criei uma imagem Docker para o banco de dados e esta imagem tem um script de Sch
 Acessar diretório 
 > cd banco/my-mysql
 
+Preparar ambiente de rede para estabelecer conexão entre os containers 
+
+> docker network create --driver=bridge --subnet=192.168.0.0/24 --gateway=192.168.0.1 mynet
+
+
 Buildar a imagem
 > docker build -t mysql .
 
 Inicializar o container 
-> docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mudar123 mysql
+> docker run --ip=192.168.0.10 --net=mynet -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mudar123 -e MYSQL_ROOT_HOST=%mysql
 
 Verificar se o container subiu
 > docker ps
@@ -104,6 +113,31 @@ Para verificar os registros pode ser executado um select com o seguinte formato 
 > select * from posts; 
 
 
+
+## Configurações do container que faz a conexão e inserção dos tweets no banco de dados
+
+Acessar o diretório cd /node/conecta
+Buildar a imagem do container com o comando :
+
+> docker build -t api-insere .
+
+Executar o container com o comando: 
+
+> docker run --ip=192.168.0.9 --net=mynet -p 8888:8888 api-insere
+
+## Configuração do container que faz a busca e ordenação dos tweets no banco de dados 
+
+Acessar o diretório cd /node/busca
+
+Buildar a imagem do container com o comando :
+
+> docker build -t busca .
+
+Executar o container com o comando:
+
+> docker run --ip=192.168.0.8 --net=mynet -p 8080:8080 busca
+
+Realizar o acesso via browser no endereço http://192.168.0.8:8080 e visualizar o conteúdo extraído do banco. 
 
 
     
